@@ -39,7 +39,7 @@ namespace InyeccionDependencia02Consola {
          //Llamar la rutina de Notificar con vigilanteUno:
          vigilanteUno.Notificar( "vigilanteUno notificando. Se creó usando UnityContainer" );
 
-         Separador();
+         Separador( '.' );
 
          //Registrar otro tipo de notificador:
          elContenedor.RegisterType< INotificador, NotificarACorreo >();
@@ -50,11 +50,11 @@ namespace InyeccionDependencia02Consola {
          //Llamar la rutina de Notificar con vigilanteDos:
          vigilanteDos.Notificar("También se creó con UnityContainer, después de registrar tipo NotificarACorreo ");
 
-         Separador();
+         Separador( '.' );
 
          vigilanteUno.Notificar( "vigilanteUno notificando. Después de haber registrado y usado otro tipo de Notificador (NotificarACorreo)." );
 
-         Separador();
+         Separador( '.' );
 
          //Registrar otro tipo de notificador:
          elContenedor.RegisterType< INotificador, NotificarAMensajeTexto >();
@@ -116,8 +116,8 @@ namespace InyeccionDependencia02Consola {
       #endregion Pruebas
 
       #region Común
-      private void Separador() {
-         Console.WriteLine( $"\r\n\r\n{"".PadLeft( 120, '_' )}\r\n\r\n" );
+      private void Separador( Char caracterSeparador = '_' ) { //No usar default si se pasa a una librería. Usar overload.
+         Console.WriteLine( $"\r\n\r\n{"".PadLeft( 120, caracterSeparador )}\r\n\r\n" );
       }
       #endregion Común
 
