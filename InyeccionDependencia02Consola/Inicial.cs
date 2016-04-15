@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InyeccionDependencia02Lib.Pruebas01;
+using Microsoft.Practices.Unity;
 
 namespace InyeccionDependencia02Consola {
 
@@ -25,7 +27,44 @@ namespace InyeccionDependencia02Consola {
 
       #region Pruebas
       private void Prueba_04() {
-      }
+         Console.WriteLine("Prueba 04 \r\n");
+         var elContenedor = new UnityContainer();
+
+         //Indicar qué tipo de Notificador se va a inyectar:
+         elContenedor.RegisterType< INotificador, NotificarALog >();
+
+         //Reemplaza a var vigilanteUno = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
+         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
+
+         //Llamar la rutina de Notificar con vigilanteUno:
+         vigilanteUno.Notificar( "vigilanteUno notificando. Se creó usando UnityContainer" );
+
+         Separador();
+
+         //Registrar otro tipo de notificador:
+         elContenedor.RegisterType< INotificador, NotificarACorreo >();
+
+         //Reemplaza a var vigilanteDos = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
+         var vigilanteDos = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
+
+         //Llamar la rutina de Notificar con vigilanteDos:
+         vigilanteDos.Notificar("También se creó con UnityContainer, después de registrar tipo NotificarACorreo ");
+
+         Separador();
+
+         vigilanteUno.Notificar( "vigilanteUno notificando. Después de haber registrado y usado otro tipo de Notificador (NotificarACorreo)." );
+
+         Separador();
+
+         //Registrar otro tipo de notificador:
+         elContenedor.RegisterType< INotificador, NotificarAMensajeTexto >();
+
+         //Reemplaza a var vigilanteTres = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
+         var vigilanteTres = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
+
+         //Notificar:
+         vigilanteTres.Notificar( "vigilanteTres notificando. vigilanteTres se creó después de registrar el tipo de Notificador NotificarAMensajeTexto" );
+      } //private void Prueba_04()
 
       private void Prueba_03() {
          //Crear tres tipos distintos de notificadores
