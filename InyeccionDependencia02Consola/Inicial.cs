@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace InyeccionDependencia02Consola {
 
    class Inicial {
+      #region Principal
       static void Main( string[] args ) {
          new Inicial().Pruebas();
       }
@@ -17,10 +18,13 @@ namespace InyeccionDependencia02Consola {
          Prueba_02();
          Separador();
          Prueba_03();
+         Separador();
+         Prueba_04();
       }
+      #endregion Principal
 
-      private void Separador() {
-         Console.WriteLine( $"\r\n\r\n{"".PadLeft( 120, '_' )}\r\n\r\n" );
+      #region Pruebas
+      private void Prueba_04() {
       }
 
       private void Prueba_03() {
@@ -70,6 +74,14 @@ namespace InyeccionDependencia02Consola {
          vigilanteUno = new InyeccionDependencia02Lib.Pruebas01.VigilanteAplicacion( notificadorPorMensajeTexto01 );
          vigilanteUno.Notificar( "Vigilante Uno" );
       }
-   }
+      #endregion Pruebas
+
+      #region Común
+      private void Separador() {
+         Console.WriteLine( $"\r\n\r\n{"".PadLeft( 120, '_' )}\r\n\r\n" );
+      }
+      #endregion Común
+
+   } //class Inicial
 
 } //namespace InyeccionDependencia02Consola {
