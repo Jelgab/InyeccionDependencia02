@@ -33,8 +33,13 @@ namespace InyeccionDependencia02Consola {
          //Indicar qué tipo de Notificador se va a inyectar:
          elContenedor.RegisterType< INotificador, NotificarALog >();
 
-         //Reemplaza a var vigilanteUno = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
-         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
+         //Reemplaza a var vigilanteUno = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04( new NotificarALog() ):
+         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >(); //[Resolve()] crea una nueva instancia del tipo [VigilanteAplicacion04], toma el constructor,  mira de qué
+                                                                                                                 //tipo es el parámetro del constructor (Interface [INotificador] en este caso), busca si esta instancia de
+                                                                                                                 //[elContenedor] tiene un tipo registrado que se adhiera a esa interface y si lo halla le entrega una nueva
+                                                                                                                 //instancia de este tipo al constructor de [VigilanteAplicacion04]. O sea que en este caso [Resolve()] 
+                                                                                                                 //creará una instancia VigilanteAplicacion04(New NotificarALog()) y el resultado tipo VigilanteAplicacion04
+                                                                                                                 //será entregado a [vigilanteUno]. [vigilanteUno] es entonces del tipo VigilanteAplicacion04.
 
          //Llamar la rutina de Notificar con vigilanteUno:
          vigilanteUno.Notificar( "vigilanteUno notificando. Se creó usando UnityContainer" );
@@ -42,24 +47,25 @@ namespace InyeccionDependencia02Consola {
          Separador( '.' );
 
          //Registrar otro tipo de notificador:
-         elContenedor.RegisterType< INotificador, NotificarACorreo >();
+         elContenedor.RegisterType< INotificador, NotificarACorreo >(); //Después de esto, cuando se use Resolve, no se asignará una instancia del tipo [NotificarALog] sino del tipo [NotificarACorreo].
 
-         //Reemplaza a var vigilanteDos = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
-         var vigilanteDos = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
+         //Reemplaza a var vigilanteDos = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04( new NotificarACorreo() ):
+         var vigilanteDos = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >(); //Crea nueva instancia [VigilanteAplicacion04], inyecta instancia tipo [NotificarACorreo]
 
          //Llamar la rutina de Notificar con vigilanteDos:
          vigilanteDos.Notificar("También se creó con UnityContainer, después de registrar tipo NotificarACorreo ");
 
          Separador( '.' );
 
+         //Solo para mostrar que [vigilanteUno] no es afectado por los cambios posteriores a [elContenedor]:
          vigilanteUno.Notificar( "vigilanteUno notificando. Después de haber registrado y usado otro tipo de Notificador (NotificarACorreo)." );
 
          Separador( '.' );
 
          //Registrar otro tipo de notificador:
-         elContenedor.RegisterType< INotificador, NotificarAMensajeTexto >();
+         elContenedor.RegisterType< INotificador, NotificarAMensajeTexto >(); //Después de esto, cuando se use Resolve, inyectará new NotificarAMensajeTexto()
 
-         //Reemplaza a var vigilanteTres = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04():
+         //Reemplaza a var vigilanteTres = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04( new NotificarAMensajeTexto() ):
          var vigilanteTres = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >();
 
          //Notificar:
