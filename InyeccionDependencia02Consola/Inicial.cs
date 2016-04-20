@@ -118,6 +118,12 @@ namespace InyeccionDependencia02Consola {
          //Crear una nueva instancia de vigilante, inyectarle el Notificador por Mensaje Texto, guardarla en [vigilanteUno]:
          vigilanteUno = new InyeccionDependencia02Lib.Pruebas01.VigilanteAplicacion( notificadorPorMensajeTexto01 );
          vigilanteUno.Notificar( "Vigilante Uno" );
+
+         //Mostrar forma simplificada:
+         var vigilanteSimpleUno = new VigilanteAplicacion( new NotificarALog() );
+         vigilanteSimpleUno.Notificar( "Vigilante Simple #1" );
+
+         new VigilanteAplicacion( new NotificarACorreo() ).Notificar( "Vigilante Simple #2" );
       }
       #endregion Pruebas
 
