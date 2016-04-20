@@ -27,6 +27,8 @@ namespace InyeccionDependencia02Consola {
 
       #region Pruebas
       private void Prueba_04() {
+         MensajeCentrado( "Prueba_04" );
+
          Console.WriteLine("Prueba 04 \r\n");
          var elContenedor = new UnityContainer();
 
@@ -73,6 +75,8 @@ namespace InyeccionDependencia02Consola {
       } //private void Prueba_04()
 
       private void Prueba_03() {
+         MensajeCentrado( "Prueba_03" );
+
          //Crear tres tipos distintos de notificadores
          var notificadorPorLog01          = new InyeccionDependencia02Lib.Pruebas01.NotificarALog();
          var notificadorPorCorreo01       = new InyeccionDependencia02Lib.Pruebas01.NotificarACorreo();
@@ -90,6 +94,8 @@ namespace InyeccionDependencia02Consola {
       }
 
       private void Prueba_02() {
+         MensajeCentrado( "Prueba_02" );
+
          //Crear tres tipos distintos de notificadores
          var notificadorPorLog01          = new InyeccionDependencia02Lib.Pruebas01.NotificarALog();
          var notificadorPorCorreo01       = new InyeccionDependencia02Lib.Pruebas01.NotificarACorreo();
@@ -102,6 +108,8 @@ namespace InyeccionDependencia02Consola {
       }
 
       private void Prueba_01() {
+         MensajeCentrado( "Prueba_01" );
+
          //Crear tres tipos distintos de notificadores
          var notificadorPorLog01          = new InyeccionDependencia02Lib.Pruebas01.NotificarALog();
          var notificadorPorCorreo01       = new InyeccionDependencia02Lib.Pruebas01.NotificarACorreo();
@@ -129,8 +137,14 @@ namespace InyeccionDependencia02Consola {
 
       #region Común
       private void Separador( Char caracterSeparador = '_' ) { //No usar default si se pasa a una librería. Usar overload.
-         Console.WriteLine( $"\r\n\r\n{"".PadLeft( 120, caracterSeparador )}\r\n\r\n" );
+         Console.WriteLine( $"\r\n\r\n{"".PadLeft( Console.WindowWidth - 1, caracterSeparador )}\r\n\r\n" );
       }
+
+      private void MensajeCentrado( String elMensaje ) {
+         var mitadIzquierda = ( Console.WindowWidth + elMensaje.Length ) / 2;
+         Console.WriteLine(elMensaje.PadLeft( mitadIzquierda ));
+      }
+
       #endregion Común
 
    } //class Inicial
