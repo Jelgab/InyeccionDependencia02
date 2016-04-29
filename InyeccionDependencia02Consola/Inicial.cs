@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InyeccionDependencia02Lib.Pruebas01;
+using InyeccionDependencia02Lib.Pruebas05;
 using Microsoft.Practices.Unity;
 
 /*
@@ -29,10 +30,47 @@ namespace InyeccionDependencia02Consola {
          Prueba_03();
          Separador();
          Prueba_04();
+         Separador();
+         Prueba_05();
       }
       #endregion Principal
 
       #region Pruebas
+
+      private void Prueba_05() {
+         MensajeCentrado( "Prueba_04" );
+         var elContenedor = new UnityContainer();
+
+         //Indicar los tipos disponibles para inyectar:
+         elContenedor.RegisterType< INotificador, NotificarACorreo >(); 
+         elContenedor.RegisterType< IDatosVarios, DatosServicio    >();
+
+         //Obtener una instancia tipo ConsumidorDatos:
+         var consumidorUno = elContenedor.Resolve< ConsumidorDatos >(); //[elContenedor] tiene ahora 2 tipos registrados pero sabe cuál inyectar basado en el tipo de instancia a crear
+
+         //Usar esta instancia tipo ConsumidorDatos:
+         consumidorUno.MostrarDatos( "type=meat-and-filler&paras=1" );
+
+         Separador( '.' );
+
+         //Obtener una instancia del tipo VigilanteAplicacion04:
+         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >(); //[elContenedor] tiene ahora 2 tipos registrados pero sabe cuál inyectar basado en el tipo de instancia a crear
+
+         //Usar esta instancia tipo VigilanteAplicacion04:
+         vigilanteUno.Notificar( "vigilanteUno notificando. Se creó usando UnityContainer" );
+
+         Separador( '.' );
+
+         //Registrar otro tipo de instancia para IDatosVarios:
+         elContenedor.RegisterType< IDatosVarios, DatosSimulados >();
+
+         //Obtener una instancia tipo ConsumidorDatos:
+         var consumidorDos = elContenedor.Resolve< ConsumidorDatos >(); //[elContenedor] AÚN TIENE 2 tipos registrados pero uno de ellos, el de tipo interface [IDatosVarios] fue cambiado de [DatosServicio] a [DatosSimulados]
+
+         //Usar esta instancia tipo ConsumidorDatos:
+         consumidorDos.MostrarDatos( "type=meat-and-filler&paras=1" );
+      }
+
       private void Prueba_04() {
          MensajeCentrado( "Prueba_04" );
 
