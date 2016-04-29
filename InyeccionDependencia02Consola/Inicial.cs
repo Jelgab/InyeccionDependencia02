@@ -36,12 +36,14 @@ namespace InyeccionDependencia02Consola {
          elContenedor.RegisterType< INotificador, NotificarALog >();
 
          //Reemplaza a var vigilanteUno = new InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04( new NotificarALog() ):
-         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >(); //[Resolve()] crea una nueva instancia del tipo [VigilanteAplicacion04], toma el constructor,  mira de qué
+         var vigilanteUno = elContenedor.Resolve< InyeccionDependencia02Lib.Pruebas04.VigilanteAplicacion04 >(); //[Resolve()] crea una nueva instancia del tipo [VigilanteAplicacion04], toma su constructor,  mira de qué
                                                                                                                  //tipo es el parámetro del constructor (Interface [INotificador] en este caso), busca si esta instancia de
                                                                                                                  //[elContenedor] tiene un tipo registrado que se adhiera a esa interface y si lo halla le entrega una nueva
                                                                                                                  //instancia de este tipo al constructor de [VigilanteAplicacion04]. O sea que en este caso [Resolve()] 
                                                                                                                  //creará una instancia VigilanteAplicacion04(New NotificarALog()) y el resultado tipo VigilanteAplicacion04
-                                                                                                                 //será entregado a [vigilanteUno]. [vigilanteUno] es entonces del tipo VigilanteAplicacion04.
+                                                                                                                 //será entregado a [vigilanteUno]. [vigilanteUno] es entonces del tipo VigilanteAplicacion04 y su propiedad
+                                                                                                                 //_NotificadorActual tiene una instancia del tipo NotificarALog. [Resolve()] es el método de fábrica o
+                                                                                                                 //factory method que entregó estos valores.
 
          //Llamar la rutina de Notificar con vigilanteUno:
          vigilanteUno.Notificar( "vigilanteUno notificando. Se creó usando UnityContainer" );
