@@ -11,7 +11,7 @@ namespace InyeccionDependencia02Lib.Pruebas05 {
          var elResultado = "";
 
          using ( var clienteRequest = new WebClient() ) {
-            var datosGet = "http://baconipsum.com/api/?type=meat-and-filler&paras=1"; //Servicio que devuelve palabras (como lorem ipsum)
+            var datosGet = $"http://baconipsum.com/api/?{lasOpciones}"; //Servicio que devuelve palabras (como lorem ipsum)
 
             try {
                elResultado = clienteRequest.DownloadString( datosGet );
