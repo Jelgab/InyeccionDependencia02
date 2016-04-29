@@ -49,6 +49,7 @@
     <Compile Include="Pruebas02\VigilanteAplicacion02.cs" />
     <Compile Include="Pruebas03\VigilanteAplicacion03.cs" />
     <Compile Include="Pruebas04\VigilanteAplicacion04.cs" />
+    <Compile Include="Pruebas05\ConsumidorDatos.cs" />
     <Compile Include="Pruebas05\DatosServicio.cs" />
     <Compile Include="Pruebas05\DatosSimulados.cs" />
     <Compile Include="Pruebas05\IDatosVarios.cs" />
