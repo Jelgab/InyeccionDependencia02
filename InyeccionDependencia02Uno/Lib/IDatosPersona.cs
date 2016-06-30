@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace InyeccionDependencia02Uno.Lib {
-   internal interface IDatosPersona {
+   public interface IDatosPersona {
       List< string > ObtenerListaNombresCompletos();
    }
 }
