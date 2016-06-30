@@ -46,6 +46,9 @@
   <ItemGroup>
     <Compile Include="Controladores\PersonaControlador.cs" />
     <Compile Include="Inicial.cs" />
+    <Compile Include="Lib\DatosPersonaMock01.cs" />
+    <Compile Include="Lib\DatosPersonaRegular.cs" />
+    <Compile Include="Lib\IDatosPersona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
