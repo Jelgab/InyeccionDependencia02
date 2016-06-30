@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 namespace InyeccionDependencia02Uno.Lib {
    public class DatosPersonaOperaciones {
 
+      public static List< string > BuscarNombres( string porcionNombreABuscar ) {
+         return BuscarNombres( porcionNombreABuscar, null );
+      }
+
       public static List<string> BuscarNombres( string porcionNombreABuscar, IDatosPersona objetoDatosPersona ) {
+         //Verificar herramienta de datos:
+         objetoDatosPersona = objetoDatosPersona ?? new DatosPersonaRegular();
+
          //Lista de nombres completos:
          var listaNombresCompletos = objetoDatosPersona.ObtenerListaNombresCompletos();
 
