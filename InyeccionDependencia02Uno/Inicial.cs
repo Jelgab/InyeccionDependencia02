@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InyeccionDependencia02Uno.Controladores;
+using InyeccionDependencia02Uno.Lib;
 
 /*
 */
@@ -21,7 +22,8 @@ namespace InyeccionDependencia02Uno {
       private void Prueba02_BuscarNombre() {
          Console.Write( "Entre parte del nombre a buscar:" );
          var porcionNombreABuscar = Console.ReadLine();
-         var listaNombresHallados = BuscarNombres( porcionNombreABuscar );
+
+         var listaNombresHallados = BuscarNombres( porcionNombreABuscar, new DatosPersonaRegular() );
 
          if ( listaNombresHallados.Count < 1 ) {
             Console.WriteLine( "No se hallaron nombres" );
@@ -32,9 +34,9 @@ namespace InyeccionDependencia02Uno {
          }
       }
 
-      private List<string> BuscarNombres( string porcionNombreABuscar ) {
+      private List<string> BuscarNombres( string porcionNombreABuscar, IDatosPersona objetoDatosPersona ) {
          //Lista de nombres completos:
-         var listaNombresCompletos = PersonaControlador.ListaNombresCompletos();
+         var listaNombresCompletos = objetoDatosPersona.ObtenerListaNombresCompletos();
 
          //Obtener los que contengan [porcionNombreABuscar]:
          var listaNombresHallados = listaNombresCompletos.Where( nombreCompletoActual => nombreCompletoActual.ToUpper().Contains( porcionNombreABuscar.ToUpper() ) ).ToList();
