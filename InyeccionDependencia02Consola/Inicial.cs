@@ -178,6 +178,7 @@ namespace InyeccionDependencia02Consola {
          var vigilanteSimpleUno = new VigilanteAplicacion( new NotificarALog() );
          vigilanteSimpleUno.Notificar( "Vigilante Simple #1" );
 
+         //Mostrar otra forma simplificada:
          new VigilanteAplicacion( new NotificarACorreo() ).Notificar( "Vigilante Simple #2" );
       }
       #endregion Pruebas
